@@ -1,13 +1,19 @@
 package br.dev.gustavo_pereira.calculadora_tabuada;
 
+import br.dev.gustavo_pereira.calculadora_tabuada.gui.TelaTabuada;
 import br.dev.gustavo_pereira.calculadora_tabuada.ui.Menu;
 
 public class Main {
 
 	public static void main(String[] args) {
 		
-		Menu menu = new Menu();
-		menu.criarMenu();
+		TelaTabuada tela = new TelaTabuada();
+		tela.criarTelaTabuada();
+		
+		
+		
+		//Menu menu = new Menu();
+		//menu.criarMenu();
 		
 	}
 
