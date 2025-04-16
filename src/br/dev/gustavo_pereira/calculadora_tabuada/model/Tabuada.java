@@ -1,5 +1,7 @@
 package br.dev.gustavo_pereira.calculadora_tabuada.model;
 
+import javax.swing.JList;
+
 public class Tabuada {
 
 	private double multiplicando;
@@ -32,13 +34,19 @@ public class Tabuada {
 	
 	
 	public void mostrarTabuada() {
+		
+		double tamanho = maximoMultiplicador - minimoMultiplicador + 1;
+		
+		String[] tabuada = new String[(int) tamanho];
+		
 		while (minimoMultiplicador <= maximoMultiplicador ) {
-			double tabuada = multiplicando * minimoMultiplicador;
-			System.out.println(multiplicando + " X " + minimoMultiplicador + " = " + tabuada);
+			double produto = multiplicando * minimoMultiplicador;
+			System.out.println(multiplicando + " X " + minimoMultiplicador + " = " + produto);
 			minimoMultiplicador = minimoMultiplicador +1;
 		}
+	}
+	
 		
 		
 	}
 	
-}

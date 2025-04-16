@@ -1,11 +1,17 @@
 package br.dev.gustavo_pereira.calculadora_tabuada.gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.function.ObjDoubleConsumer;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+
+import br.dev.gustavo_pereira.calculadora_tabuada.model.Tabuada;
 
 public class TelaTabuada {
 	
@@ -31,9 +37,10 @@ public class TelaTabuada {
 	public void criarTelaTabuada() {
 		JFrame tela = new JFrame();
 		tela.setTitle("Tabuada");
-		tela.setSize(400, 700);
+		tela.setSize(270, 675);
 		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		tela.setLayout(null);
+		tela.setResizable(false);
 		
 		// Vamos criar os componentes da tela
 		labelMultiplicando = new JLabel();
@@ -65,7 +72,7 @@ public class TelaTabuada {
 		textMaxMultiplicador.setText(null);
 		textMaxMultiplicador.setBounds(180, 100, 50, 30);
 		
-		//---------------------------------------------------------------
+		//Criar botão
 		
 		buttonCalcular = new JButton();
 		buttonCalcular.setText("Calcular");
@@ -76,9 +83,15 @@ public class TelaTabuada {
 		buttonLimpar.setBounds(130, 140, 100, 30);
 		
 		
-		//--------------------------------------------------------------
-		scrollTabuada = new JScrollPane();
-		scrollTabuada.setBounds(20, 180, 210, 450);	
+		listTabuada = new JList();
+		
+		
+		
+		//Criar objeto scroll
+		scrollTabuada = new JScrollPane(listTabuada);
+		scrollTabuada.setBounds(20, 180, 210, 400);	
+		
+		
 		
 		
 		
@@ -93,6 +106,52 @@ public class TelaTabuada {
 		tela.getContentPane().add(buttonCalcular);
 		tela.getContentPane().add(buttonLimpar);
 		tela.getContentPane().add(scrollTabuada);		
+		
+		
+		// Adicionar ouvintes de evento aos botões
+		buttonCalcular.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				Tabuada tabuada = new Tabuada();
+				// Convertendo a string para double
+				String multiplicando = textMultiplicando.getText();
+				double multiplicandoDouble = Double.valueOf(multiplicando);
+				tabuada.setMultiplicando(multiplicandoDouble);
+				
+				// Convertendo a string para double
+				String minMultiplicando = textMinMultiplicador.getText();
+				double minMultiplicandoDouble = Double.valueOf(minMultiplicando);
+				tabuada.setMinimoMultiplicador(minMultiplicandoDouble);
+				
+				// Convertendo a string para double
+				String maxMultiplicando = textMaxMultiplicador.getText();
+				double maxMultiplicandoDouble = Double.valueOf(maxMultiplicando);
+				tabuada.setMaximoMultiplicador(maxMultiplicandoDouble);
+				
+				
+				
+				tabuada.mostrarTabuada();
+				
+				
+				
+			}
+		});
+		
+		buttonLimpar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				textMultiplicando.setText("");
+				textMinMultiplicador.setText("");
+				textMaxMultiplicador.setText("");
+				textMultiplicando.requestFocus();
+				
+				
+			}
+		});
 		
 		
 		//Essa linha deve ser a última linha desse método
