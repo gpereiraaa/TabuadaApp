@@ -83,7 +83,9 @@ public class TelaTabuada {
 		buttonLimpar.setBounds(130, 140, 100, 30);
 		
 		
+		
 		listTabuada = new JList();
+		
 		
 		
 		
@@ -131,9 +133,10 @@ public class TelaTabuada {
 				double maxMultiplicandoDouble = Double.valueOf(maxMultiplicando);
 				tabuada.setMaximoMultiplicador(maxMultiplicandoDouble);
 				
+				String[] tabuadaResultado = tabuada.mostrarTabuada();
 				
 				
-				tabuada.mostrarTabuada();
+				listTabuada.setListData(tabuadaResultado);
 				
 				
 				
@@ -147,6 +150,7 @@ public class TelaTabuada {
 				textMultiplicando.setText("");
 				textMinMultiplicador.setText("");
 				textMaxMultiplicador.setText("");
+				listTabuada.setListData(new String[0]);
 				textMultiplicando.requestFocus();
 				
 				
